@@ -1,0 +1,216 @@
+package com.vuram.automation.Businessflows;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import com.vuram.automation.Constants.PlanSAConstants;
+import com.vuram.automation.utility.VATT;
+
+public class A_ApplicationSubmission extends VATT {
+	
+	@BeforeClass
+	public void login() throws Exception {
+		flow.OpenURL(PlanSAConstants.AppURL);
+		flow.StepPassWithoutScreenshot("URL Launched");
+		flow.ClickLinkBasedonIndex(1);
+		flow.LoginwithUserNameandPassword(PlanSAConstants.Username,PlanSAConstants.Password );
+		flow.StepPassWithoutScreenshot("Applicant Login Success");
+		flow.WaitforProgressBar();
+	}
+	
+	@AfterClass
+	public void logout() throws Exception {
+		flow.Logout();
+	}
+	
+	@Parameters({"Currentuse","Proposeduse","TotalDevCost","ProposedDevDetails","RelevantAuthority"})
+	@Test(enabled=true)
+	public void applicationforBuildingConsent(String Currentuse,String Proposeduse,String TotalDevCost,String ProposedDevDetails,String RelevantAuthority) throws Exception {
+		flow.StepInfoWithoutScreenshot("Logging in as "+PlanSAConstants.Username+" to create Assessment");
+		flow.ClickWebElement("Start a new application");
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectValuefromPickerCustom("Address Search",PlanSAConstants.Address);
+		flow.ClickButtonBasedonName("Add Selected");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(2);
+		flow.WaitforProgressBar();
+		flow.SingleSelectDropDown(PlanSAConstants.Title, "Title");
+		flow.SetWebText(PlanSAConstants.FirstName,"First Name");
+		flow.SetWebText(PlanSAConstants.LastName,"Last Name");
+		flow.WaitforProgressBar();
+		flow.ClickLinkBasedonName("Enter the address manually");
+		flow.WaitforProgressBar();
+		flow.SetWebText(PlanSAConstants.StreetAddress,"Street Address");
+		flow.WaitforProgressBar();
+		flow.SetWebText(PlanSAConstants.City,"City");
+		flow.SingleSelectDropDown(PlanSAConstants.State, "State");
+		flow.WaitforProgressBar();
+		flow.SetWebText(PlanSAConstants.Postcode,"Postcode");
+		flow.SetWebText(PlanSAConstants.Phone,"Phone");
+		flow.WaitforProgressBar();
+		flow.SetWebText(PlanSAConstants.Email,"Email");
+		flow.ClickButtonBasedonName("Add Applicant");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("Add Another Applicant");
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(1);
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(2);
+	    flow.WaitforProgressBar();
+	    flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(2);
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(2);
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SetWebText(Currentuse, "Current Use");
+		flow.SetWebText(Proposeduse, "Proposed Use");
+		flow.SetWebText(TotalDevCost, "Total Development Cost (excluding fit-out costs)");
+		flow.SetWebText(ProposedDevDetails, "Proposed Development Details");
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectCheckboxBasedonText("New housing");
+		flow.WaitforProgressBar();
+		flow.ClickLinkBasedonName("refine");
+		flow.WaitforProgressBar();
+		flow.SelectCheckboxBasedonText("Dwelling");
+		flow.WaitforProgressBar();
+		flow.SetWebTextBasedonPartialFieldName(PlanSAConstants.EstimatedDevCost,"Estimated Development Cost (excluding fit-out costs)");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(2);
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(4);
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(6);
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(1);
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(3);
+		flow.WaitforProgressBar();
+		flow.SetWebText(PlanSAConstants.ApplicationNumber, "Application Number");
+		flow.PopulateDateFieldBasedonPlaceholderText("dd/mm/yyyy",PlanSAConstants.Currentdate);
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonFieldName("Relevant Authority",RelevantAuthority);
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonFieldName("Do you wish to have your building consent assessed in multiple stages?","Yes");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("Add another stage");
+		flow.WaitforProgressBar();
+		flow.SetWebText(PlanSAConstants.DescriptionStage1, "Description of stage 1");
+		flow.SelectRadioButtonBasedonIndex(9);
+		flow.WaitforProgressBar();
+		flow.SetWebText(PlanSAConstants.DescriptionStage2, "Description of stage 2");
+		flow.SelectRadioButtonBasedonIndex(12);
+		flow.WaitforProgressBar();
+		flow.SetWebText(PlanSAConstants.DescriptionStage3, "Description of stage 3");
+		flow.SelectRadioButtonBasedonIndex(14);
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(15);
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(17);
+		flow.WaitforProgressBar();
+		flow.SetWebText(PlanSAConstants.CITBReceiptNumber, "CITB Receipt Number");
+		flow.SelectRadioButtonBasedonIndex(20);
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(2);
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(3);
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.UploadFile(PlanSAConstants.FilePath);
+		flow.WaitforProgressBar();
+		flow.SingleSelectDropDownBasedonIndex("Decision","false",1);
+		flow.WaitforProgressBar();
+		flow.SingleSelectDropDownBasedonIndex("Decision Notification Form","false",2);
+		flow.WaitforProgressBar();
+		flow.UploadFile(PlanSAConstants.FilePath);
+		flow.WaitforProgressBar();
+		flow.SingleSelectDropDownBasedonIndex("Plans","false",3);
+		flow.WaitforProgressBar();
+		flow.SingleSelectDropDownBasedonIndex("Stamped Plans","false",4);
+		flow.WaitforProgressBar();
+		flow.UploadFile(PlanSAConstants.FilePath);
+		flow.WaitforProgressBar();
+		flow.SingleSelectDropDownBasedonIndex("Building Consent Documents","false",5);
+		flow.WaitforProgressBar();
+		flow.SingleSelectDropDownBasedonIndex("CITB Payment Reference","false",6);
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(2);
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("Save Draft");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("Yes");
+		flow.WaitforProgressBar();
+		flow.Timeout(10000);
+	    flow.ClickButtonBasedonIndex(3);
+		flow.WaitforProgressBar();
+		flow.ClickPartialLinkBasedonNamewithIndex("Resume", 1);
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectRadioButtonBasedonIndex(15);
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("NEXT");
+		flow.WaitforProgressBar();
+		flow.SelectCheckboxBasedonIndex(2);
+		flow.WaitforProgressBar();
+		flow.ClickButtonBasedonName("SUBMIT");
+		flow.WaitforProgressBar();
+		flow.Timeout(5000);
+		flow.ClickWebElement("Your Applications");
+		flow.WaitforProgressBar();
+		flow.CustomClickButtonBasedonName("Under assessment");
+//		flow.ClickButtonBasedonIndex(2);
+		flow.WaitforProgressBar();
+		String REFID = flow.RetrieveTextPresentinGrid(1, 1, 1);
+		flow.StepPassWithoutScreenshot("Application Submitted. Created Assessment ID is: " + REFID);
+		flow.verifyExpectedTextInGrid(1, 1, 1, REFID);
+		flow.verifyExpectedTextInGrid(1, 1, 2,PlanSAConstants.FirstName.charAt(0)+" "+PlanSAConstants.LastName);	
+		flow.verifyExpectedTextInGrid(1, 1, 4, ProposedDevDetails);
+		flow.verifyExpectedTextInGrid(1, 1, 5, RelevantAuthority);
+		flow.verifyExpectedTextInGrid(1, 1, 7, "Verification in progress (Building Consent)");
+	
+}
+
+}
